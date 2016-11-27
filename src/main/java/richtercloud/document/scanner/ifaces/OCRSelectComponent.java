@@ -14,6 +14,7 @@
  */
 package richtercloud.document.scanner.ifaces;
 
+import java.io.File;
 import javax.swing.JPanel;
 
 /**
@@ -24,4 +25,10 @@ public abstract class OCRSelectComponent extends JPanel {
     private static final long serialVersionUID = 1L;
 
     public abstract OCRSelectPanelPanel getoCRSelectPanelPanel();
+
+    /**
+     * A reference to the file which has been opened.
+     * @return the reference or {@code null} if the document is an unsaved scan.
+     */
+    public abstract File getFile();
 }
