@@ -38,4 +38,6 @@ public interface MainPanelDockingManager {
 
     void switchDocument(OCRSelectComponent old,
             final OCRSelectComponent aNew);
+
+    void removeDocument(OCRSelectComponent oCRSelectComponent);
 }

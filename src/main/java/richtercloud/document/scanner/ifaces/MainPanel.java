@@ -46,5 +46,9 @@ public abstract class MainPanel extends JPanel {
     public abstract void addDocument(List<BufferedImage> images,
             File selectedFile) throws DocumentAddException;
 
+    public abstract void removeActiveDocument();
+
     public abstract List<BufferedImage> retrieveImages(File selectedFile) throws DocumentAddException, InterruptedException, ExecutionException ;
+
+    public abstract int getDocumentCount();
 }
