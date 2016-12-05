@@ -14,8 +14,8 @@
  */
 package richtercloud.document.scanner.ifaces;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -41,14 +41,14 @@ public abstract class MainPanel extends JPanel {
         return (GroupLayout) super.getLayout();
     }
 
-    public abstract void addDocument(Object entityToEdit) throws DocumentAddException;
+    public abstract void addDocument(Object entityToEdit) throws DocumentAddException, IOException;
 
-    public abstract void addDocument(List<BufferedImage> images,
-            File selectedFile) throws DocumentAddException;
+    public abstract void addDocument(List<ImageWrapper> images,
+            File selectedFile) throws DocumentAddException, IOException;
 
     public abstract void removeActiveDocument();
 
-    public abstract List<BufferedImage> retrieveImages(File selectedFile) throws DocumentAddException, InterruptedException, ExecutionException ;
+    public abstract List<ImageWrapper> retrieveImages(File selectedFile) throws DocumentAddException, InterruptedException, ExecutionException ;
 
     public abstract int getDocumentCount();
 }
