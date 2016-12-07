@@ -22,8 +22,20 @@ import javafx.scene.image.WritableImage;
  * Wraps different previews of a {@link BufferedImage} and a reference to the
  * image data on disk as well as translation between JavaFX and Swing.
  *
+ * Manages desired rotation internally because rotation is a per-image property
+ * which can't be retrieved from settings after a dialog which allows rotation
+ * has been closed.
+ *
  * @author richter
  */
+/*
+internal implementation notes:
+- Desired width for zoom adjustment can't be managed
+internally because it might be necessary to retrieve different previews (e.g.
+for displaying zoomed, for OCR, etc.).
+- Managing rotation internally allows to get rotation out of ScanResultDialog
+very easily.
+*/
 public interface ImageWrapper {
 
     BufferedImage getOriginalImage() throws IOException;
@@ -37,4 +49,8 @@ public interface ImageWrapper {
     int getInitialWidth();
 
     int getInitialHeight();
+
+    double getRotationDegrees();
+
+    void setRotationDegrees(double rotationDegrees);
 }
