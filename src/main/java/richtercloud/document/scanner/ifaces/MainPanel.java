@@ -54,4 +54,6 @@ public abstract class MainPanel extends JPanel {
     public abstract int getDocumentCount();
 
     public abstract void setStorage(PersistenceStorage storage);
+
+    public abstract void setoCREngine(OCREngine oCREngine);
 }
