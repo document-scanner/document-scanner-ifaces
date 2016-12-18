@@ -15,6 +15,7 @@
 package richtercloud.document.scanner.ifaces;
 
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 import javafx.scene.image.WritableImage;
 
@@ -37,6 +38,8 @@ for displaying zoomed, for OCR, etc.).
 very easily.
 */
 public interface ImageWrapper {
+
+    FileInputStream getOriginalImageStream() throws IOException;
 
     BufferedImage getOriginalImage() throws IOException;
 

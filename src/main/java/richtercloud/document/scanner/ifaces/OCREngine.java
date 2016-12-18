@@ -15,7 +15,9 @@
 package richtercloud.document.scanner.ifaces;
 
 import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -29,6 +31,23 @@ public interface OCREngine<C extends OCREngineConf> {
      * @return the recognized characters
      */
     String recognizeImages(List<BufferedImage> images);
+
+    /**
+     * recognizes the characters of images whose data is available in
+     * {@code InputStream}s in {@code imageStreams} which provides references to
+     * {@code BufferedImage}s which allow identification of the image in order+
+     * to be able to return cached values.
+     *
+     * @param image
+     * @return the recognized characters
+     */
+    /*
+    internal implementation notes:
+    - mapping with BufferedImage keys gets you in situations where a
+    BufferedImage isn't available because its creation is avoided by
+    ImageWrapper
+    */
+    String recognizeImageStreams(Map<ImageWrapper, InputStream> imageStreams);
 
     /**
      * Allows cancelation of a (potentially time taking) {@link #recognizeImage(java.awt.image.BufferedImage) } from
