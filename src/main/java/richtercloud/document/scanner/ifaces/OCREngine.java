@@ -17,7 +17,7 @@ package richtercloud.document.scanner.ifaces;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
+import org.apache.commons.collections4.OrderedMap;
 
 /**
  *
@@ -47,7 +47,7 @@ public interface OCREngine<C extends OCREngineConf> {
     BufferedImage isn't available because its creation is avoided by
     ImageWrapper
     */
-    String recognizeImageStreams(Map<ImageWrapper, InputStream> imageStreams);
+    String recognizeImageStreams(OrderedMap<ImageWrapper, InputStream> imageStreams);
 
     /**
      * Allows cancelation of a (potentially time taking) {@link #recognizeImage(java.awt.image.BufferedImage) } from
