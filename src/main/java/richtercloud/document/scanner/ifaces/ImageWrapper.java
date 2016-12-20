@@ -15,8 +15,10 @@
 package richtercloud.document.scanner.ifaces;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import javafx.scene.image.WritableImage;
 
 /**
@@ -37,7 +39,7 @@ for displaying zoomed, for OCR, etc.).
 - Managing rotation internally allows to get rotation out of ScanResultDialog
 very easily.
 */
-public interface ImageWrapper {
+public interface ImageWrapper extends Serializable {
 
     FileInputStream getOriginalImageStream() throws IOException;
 
@@ -56,4 +58,12 @@ public interface ImageWrapper {
     double getRotationDegrees();
 
     void setRotationDegrees(double rotationDegrees);
+
+    File getStorageFile();
+
+    /**
+     * Get the size based on the size of the storage file.
+     * @return the size in bytes.
+     */
+    long getSize();
 }
