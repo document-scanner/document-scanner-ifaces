@@ -16,8 +16,8 @@ package richtercloud.document.scanner.ifaces;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import javafx.scene.image.WritableImage;
 
@@ -41,7 +41,19 @@ very easily.
 */
 public interface ImageWrapper extends Serializable {
 
-    FileInputStream getOriginalImageStream() throws IOException;
+    /**
+     * Binary data of the original image in form of an {@link InputStream}
+     * @return the stream containing binary data
+     * @throws IOException if an exception occurs while reading from image
+     * storage file
+     */
+    /*
+    internal implementation notes:
+    - no need to make InputStream more concrete since it allows using buffered
+    streams, a key technique to speed up I/O in Java
+    <ref>http://www.oracle.com/technetwork/articles/javase/perftuning-137844.html</ref>
+    */
+    InputStream getOriginalImageStream() throws IOException;
 
     BufferedImage getOriginalImage() throws IOException;
 
