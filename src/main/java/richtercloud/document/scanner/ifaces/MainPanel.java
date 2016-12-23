@@ -14,8 +14,12 @@
  */
 package richtercloud.document.scanner.ifaces;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -30,6 +34,7 @@ import richtercloud.reflection.form.builder.jpa.storage.PersistenceStorage;
  */
 public abstract class MainPanel extends JPanel {
     private static final long serialVersionUID = 1L;
+    public final static int EXPORT_FORMAT_PDF = 1;
 
     public abstract OCRSelectComponent getoCRSelectComponent();
 
@@ -56,4 +61,16 @@ public abstract class MainPanel extends JPanel {
     public abstract void setStorage(PersistenceStorage storage);
 
     public abstract void setoCREngine(OCREngine oCREngine);
+
+    public abstract void exportActiveDocument(OutputStream outputStream,
+            int exportFormat) throws IOException;
+
+    public void exportActiveDocument(File outputFile,
+            int exportFormat) throws FileNotFoundException, IOException {
+        try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile))) {
+            exportActiveDocument(outputStream,
+                    exportFormat);
+            outputStream.flush();
+        }
+    }
 }
