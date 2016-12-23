@@ -40,9 +40,12 @@ for displaying zoomed, for OCR, etc.).
 very easily.
 */
 public interface ImageWrapper extends Serializable {
+    public final static String FORMAT_DEFAULT = "png";
 
     /**
      * Binary data of the original image in form of an {@link InputStream}
+     * @param formatName passed to
+     * {@link ImageIO#write(java.awt.image.RenderedImage, java.lang.String, java.io.File) }
      * @return the stream containing binary data
      * @throws IOException if an exception occurs while reading from image
      * storage file
@@ -53,6 +56,15 @@ public interface ImageWrapper extends Serializable {
     streams, a key technique to speed up I/O in Java
     <ref>http://www.oracle.com/technetwork/articles/javase/perftuning-137844.html</ref>
     */
+    InputStream getOriginalImageStream(String formatName) throws IOException;
+
+    /**
+     * Binary data of the original image in form of an {@link InputStream} in
+     * format {@link #FORMAT_DEFAULT}.
+     * @return the stream containing binary data
+     * @throws IOException if an exception occurs while reading from image
+     * storage file
+     */
     InputStream getOriginalImageStream() throws IOException;
 
     BufferedImage getOriginalImage() throws IOException;
