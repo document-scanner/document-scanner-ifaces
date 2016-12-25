@@ -4,21 +4,23 @@
     <parent>
         <groupId>richtercloud</groupId>
         <artifactId>document-scanner-aggregator</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0-beta</version>
     </parent>
     <artifactId>document-scanner-ifaces</artifactId>
     <packaging>jar</packaging>
     <dependencies>
+        <!--document-scanner dependencies-->
+        <dependency>
+            <groupId>richtercloud</groupId>
+            <artifactId>reflection-form-builder-jpa</artifactId>
+            <version>1.0-beta</version>
+            <type>jar</type>
+        </dependency>
+        <!--Other dependencies-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>richtercloud</groupId>
-            <artifactId>reflection-form-builder-jpa</artifactId>
-            <version>1.0-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
     </dependencies>
