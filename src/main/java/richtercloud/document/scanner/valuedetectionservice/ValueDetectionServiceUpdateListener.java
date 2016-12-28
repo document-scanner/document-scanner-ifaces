@@ -12,23 +12,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package richtercloud.document.scanner.ifaces;
-
-import javax.swing.JPanel;
+package richtercloud.document.scanner.valuedetectionservice;
 
 /**
+ * Note that there can be more results than words in the OCR value detection
+ * input.
  *
  * @author richter
  */
-public abstract class EntityPanel extends JPanel {
-    private static final long serialVersionUID = 1L;
+public interface ValueDetectionServiceUpdateListener<T> {
 
-    public abstract void autoOCRValueDetection(OCRSelectPanelPanelFetcher oCRSelectPanelPanelFetcher,
-            boolean forceRenewal);
-
-    /**
-     * Create new {@link ValueDetectionService}s after a change of available and
-     * selected {@link ValueDetectionService}s in configuration.
-     */
-    public abstract void applyValueDetectionServiceSelection();
+    void onUpdate(ValueDetectionServiceUpdateEvent<T> event);
 }

@@ -12,23 +12,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package richtercloud.document.scanner.ifaces;
-
-import javax.swing.JPanel;
+package richtercloud.document.scanner.valuedetectionservice;
 
 /**
  *
  * @author richter
  */
-public abstract class EntityPanel extends JPanel {
+public class ValueDetectionServiceConfValidationException extends Exception {
     private static final long serialVersionUID = 1L;
 
-    public abstract void autoOCRValueDetection(OCRSelectPanelPanelFetcher oCRSelectPanelPanelFetcher,
-            boolean forceRenewal);
+    public ValueDetectionServiceConfValidationException(String message) {
+        super(message);
+    }
 
-    /**
-     * Create new {@link ValueDetectionService}s after a change of available and
-     * selected {@link ValueDetectionService}s in configuration.
-     */
-    public abstract void applyValueDetectionServiceSelection();
+    public ValueDetectionServiceConfValidationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ValueDetectionServiceConfValidationException(Throwable cause) {
+        super(cause);
+    }
+
+    public ValueDetectionServiceConfValidationException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 }

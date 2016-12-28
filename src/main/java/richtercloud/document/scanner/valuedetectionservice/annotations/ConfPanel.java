@@ -12,23 +12,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package richtercloud.document.scanner.ifaces;
+package richtercloud.document.scanner.valuedetectionservice.annotations;
 
-import javax.swing.JPanel;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import richtercloud.document.scanner.valuedetectionservice.ValueDetectionServiceConfPanel;
 
 /**
  *
  * @author richter
  */
-public abstract class EntityPanel extends JPanel {
-    private static final long serialVersionUID = 1L;
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ConfPanel {
 
-    public abstract void autoOCRValueDetection(OCRSelectPanelPanelFetcher oCRSelectPanelPanelFetcher,
-            boolean forceRenewal);
-
-    /**
-     * Create new {@link ValueDetectionService}s after a change of available and
-     * selected {@link ValueDetectionService}s in configuration.
-     */
-    public abstract void applyValueDetectionServiceSelection();
+    Class<? extends ValueDetectionServiceConfPanel> confPanelClass();
 }

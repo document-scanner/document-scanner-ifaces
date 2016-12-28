@@ -12,23 +12,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package richtercloud.document.scanner.ifaces;
+package richtercloud.document.scanner.valuedetectionservice;
 
-import javax.swing.JPanel;
+import java.io.Serializable;
 
 /**
- *
+ * Specificies methods which configurations of {@link ValueDectectionService}s
+ * need to be able to execute.
  * @author richter
  */
-public abstract class EntityPanel extends JPanel {
-    private static final long serialVersionUID = 1L;
+/*
+internal implementation notes:
+- It doesn't make sense make subclasses/-interfaces return the path of the JAR
+file from which external services have been loaded because they can't be
+deserialized because they won't be on the classpath after restart of the
+application.
+*/
+public interface ValueDetectionServiceConf extends Serializable {
 
-    public abstract void autoOCRValueDetection(OCRSelectPanelPanelFetcher oCRSelectPanelPanelFetcher,
-            boolean forceRenewal);
-
-    /**
-     * Create new {@link ValueDetectionService}s after a change of available and
-     * selected {@link ValueDetectionService}s in configuration.
-     */
-    public abstract void applyValueDetectionServiceSelection();
+    void validate() throws ValueDetectionServiceConfValidationException;
 }

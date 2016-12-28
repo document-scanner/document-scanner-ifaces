@@ -73,4 +73,11 @@ public abstract class MainPanel extends JPanel {
             outputStream.flush();
         }
     }
+
+    /**
+     * Create new {@link ValueDetectionService}s on all {@link EntityPanel}s
+     * after a change of available and selected {@link ValueDetectionService}s
+     * in configuration.
+     */
+    public abstract void applyValueDetectionServiceSelection();
 }
