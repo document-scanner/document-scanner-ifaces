@@ -18,13 +18,22 @@ package richtercloud.document.scanner.ifaces;
  *
  * @author richter
  */
-public interface OCRSelectPanelPanelFetcher {
+public class OCREngineRecognitionException extends Exception {
+    private static final long serialVersionUID = 1L;
 
-    String fetch() throws OCREngineRecognitionException;
+    public OCREngineRecognitionException(String message) {
+        super(message);
+    }
 
-    void cancelFetch();
+    public OCREngineRecognitionException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-    void addProgressListener(OCRSelectPanelPanelFetcherProgressListener progressListener);
+    public OCREngineRecognitionException(Throwable cause) {
+        super(cause);
+    }
 
-    void removeProgressListener(OCRSelectPanelPanelFetcherProgressListener progressListener);
+    public OCREngineRecognitionException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 }

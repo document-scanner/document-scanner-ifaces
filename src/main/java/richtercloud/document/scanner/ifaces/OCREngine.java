@@ -22,24 +22,35 @@ import org.apache.commons.collections4.OrderedMap;
 /**
  *
  * @author richter
+ * @param <C> the type of configuration this engine needs
  */
 public interface OCREngine<C extends OCREngineConf> {
 
     /**
-     * recognizes the characters of {@code image}
-     * @param image
-     * @return the recognized characters
+     * Recognizes the characters of {@code images}.
+     * @param images the images to recognize. The list order determines how the
+     * string result's parts are concatenated, so it matters.
+     * @return the recognized characters or {@code null} if the recognition has
+     * been canceled with {@link #cancelRecognizeImages() }
+     * @throws richtercloud.document.scanner.ifaces.OCREngineRecognitionException
+     * if an unexpected exception during the recognition occured
      */
-    String recognizeImages(List<BufferedImage> images);
+    String recognizeImages(List<BufferedImage> images) throws OCREngineRecognitionException;
 
     /**
-     * recognizes the characters of images whose data is available in
+     * Recognizes the characters of images whose data is available in
      * {@code InputStream}s in {@code imageStreams} which provides references to
-     * {@code BufferedImage}s which allow identification of the image in order+
+     * {@code ImageWrapper}s which allow identification of the image in order
      * to be able to return cached values.
      *
-     * @param image
-     * @return the recognized characters
+     * @param imageStreams the mapping between {@link ImageWrapper}s (used as
+     * keys for potential caching) and their data in form of
+     * {@link InputStream}s. The map entry order determines how the string
+     * result's parts are concatenated, so it matters.
+     * @return the recognized characters or {@code null} if the recognition has
+     * been canceled with {@link #cancelRecognizeImages() }
+     * @throws richtercloud.document.scanner.ifaces.OCREngineRecognitionException
+     * if an unexpected exception during the recognition occured
      */
     /*
     internal implementation notes:
@@ -47,7 +58,7 @@ public interface OCREngine<C extends OCREngineConf> {
     BufferedImage isn't available because its creation is avoided by
     ImageWrapper
     */
-    String recognizeImageStreams(OrderedMap<ImageWrapper, InputStream> imageStreams);
+    String recognizeImageStreams(OrderedMap<ImageWrapper, InputStream> imageStreams) throws OCREngineRecognitionException;
 
     /**
      * Allows cancelation of a (potentially time taking) {@link #recognizeImage(java.awt.image.BufferedImage) } from
