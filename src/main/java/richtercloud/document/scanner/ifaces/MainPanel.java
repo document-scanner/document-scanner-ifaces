@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 import org.apache.commons.lang3.tuple.Pair;
@@ -53,8 +52,6 @@ public abstract class MainPanel extends JPanel {
             File selectedFile) throws DocumentAddException, IOException;
 
     public abstract void removeActiveDocument();
-
-    public abstract List<ImageWrapper> retrieveImages(File selectedFile) throws DocumentAddException, InterruptedException, ExecutionException ;
 
     public abstract int getDocumentCount();
 
