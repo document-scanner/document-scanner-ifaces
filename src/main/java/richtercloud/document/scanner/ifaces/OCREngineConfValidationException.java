@@ -14,14 +14,26 @@
  */
 package richtercloud.document.scanner.ifaces;
 
-import java.io.Serializable;
-
 /**
- * Holds configuration values for an {@link OCREngine} usually created in an
- * {@link OCREngineFactory} using an instance of {@code OCREngineConf}.
+ *
  * @author richter
  */
-public interface OCREngineConf extends Serializable {
+public class OCREngineConfValidationException extends Exception {
+    private static final long serialVersionUID = 1L;
 
-    void validate() throws OCREngineConfValidationException;
+    public OCREngineConfValidationException(String message) {
+        super(message);
+    }
+
+    public OCREngineConfValidationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public OCREngineConfValidationException(Throwable cause) {
+        super(cause);
+    }
+
+    public OCREngineConfValidationException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 }
