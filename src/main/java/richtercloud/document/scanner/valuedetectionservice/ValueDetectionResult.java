@@ -15,6 +15,9 @@
 package richtercloud.document.scanner.valuedetectionservice;
 
 import java.util.Objects;
+import org.apache.commons.lang3.builder.RecursiveToStringStyle;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * A result of Auto OCR value detection contains the OCR source for displaying,
@@ -24,6 +27,7 @@ import java.util.Objects;
  * address.
  *
  * @author richter
+ * @param <T> the type of the parsed value
  */
 public class ValueDetectionResult<T> {
     private final String oCRSource;
@@ -71,5 +75,13 @@ public class ValueDetectionResult<T> {
             return false;
         }
         return Objects.equals(this.value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        ToStringBuilder toStringBuilder = new ReflectionToStringBuilder(this,
+                new RecursiveToStringStyle());
+        String retValue = toStringBuilder.toString();
+        return retValue;
     }
 }
