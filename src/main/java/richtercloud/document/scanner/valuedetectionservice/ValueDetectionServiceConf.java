@@ -31,4 +31,6 @@ application.
 public interface ValueDetectionServiceConf extends Serializable {
 
     void validate() throws ValueDetectionServiceConfValidationException;
+
+    String getDescription();
 }
