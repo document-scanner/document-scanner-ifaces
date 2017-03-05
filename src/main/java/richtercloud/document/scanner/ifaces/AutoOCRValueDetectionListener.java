@@ -14,25 +14,12 @@
  */
 package richtercloud.document.scanner.ifaces;
 
-import javax.swing.JPanel;
-
 /**
  *
  * @author richter
  */
-public abstract class EntityPanel extends JPanel {
-    private static final long serialVersionUID = 1L;
+@FunctionalInterface
+public interface AutoOCRValueDetectionListener {
 
-    public abstract void autoOCRValueDetection(OCRSelectPanelPanelFetcher oCRSelectPanelPanelFetcher,
-            boolean forceRenewal);
-
-    /**
-     * Create new {@link ValueDetectionService}s after a change of available and
-     * selected {@link ValueDetectionService}s in configuration.
-     */
-    public abstract void applyValueDetectionServiceSelection();
-
-    public abstract void addAutoOCRValueDetectionListener(AutoOCRValueDetectionListener listener);
-
-    public abstract void removeAutoOCRValueDetectionListener(AutoOCRValueDetectionListener listener);
+    void onAutoOCRValueDetectionFinished();
 }

@@ -15,6 +15,7 @@
 package richtercloud.document.scanner.ifaces;
 
 import java.io.File;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -31,4 +32,6 @@ public abstract class OCRSelectComponent extends JPanel {
      * @return the reference or {@code null} if the document is an unsaved scan.
      */
     public abstract File getFile();
+
+    public abstract JButton getAutoOCRValueDetectionButton();
 }
