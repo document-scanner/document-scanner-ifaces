@@ -14,25 +14,50 @@
  */
 package richtercloud.document.scanner.ifaces;
 
+import java.util.List;
 import javax.swing.JPanel;
+import richtercloud.document.scanner.valuedetectionservice.ValueDetectionResult;
 
 /**
+ * A component holding the {@link ReflectionFormPanel} most likely in a
+ * containing component.
+ *
+ * Manages auto-OCR-value-detection and the result values since they're
+ * associated with entity data.
  *
  * @author richter
  */
 public abstract class EntityPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Runs the process of value detection (including a call to
+     * {@link #autoOCRValueDetectionGUI() }).
+     *
+     * @param oCRSelectPanelPanelFetcher
+     * @param forceRenewal allows to force detection of values no matter which
+     * values already have been recognized
+     */
     public abstract void autoOCRValueDetection(OCRSelectPanelPanelFetcher oCRSelectPanelPanelFetcher,
             boolean forceRenewal);
+
+    /**
+     * Clears all component model representing auto-OCR-value-detection results
+     * and fills them with already retrieved data. This is useful if more
+     * {@link ReflectionFormPanel}s  are added which weren't considered before
+     * in which case it's unnecessary to run the complete detection again.
+     */
+    public abstract void autoOCRValueDetectionGUI();
+
+    public abstract void addAutoOCRValueDetectionListener(AutoOCRValueDetectionListener listener);
+
+    public abstract void removeAutoOCRValueDetectionListener(AutoOCRValueDetectionListener listener);
+
+    public abstract List<ValueDetectionResult<?>> getDetectionResults();
 
     /**
      * Create new {@link ValueDetectionService}s after a change of available and
      * selected {@link ValueDetectionService}s in configuration.
      */
     public abstract void applyValueDetectionServiceSelection();
-
-    public abstract void addAutoOCRValueDetectionListener(AutoOCRValueDetectionListener listener);
-
-    public abstract void removeAutoOCRValueDetectionListener(AutoOCRValueDetectionListener listener);
 }
