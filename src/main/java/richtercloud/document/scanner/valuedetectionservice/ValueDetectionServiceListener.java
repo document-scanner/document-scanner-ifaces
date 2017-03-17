@@ -15,12 +15,12 @@
 package richtercloud.document.scanner.valuedetectionservice;
 
 /**
- * Note that there can be more results than words in the OCR value detection
- * input.
  *
  * @author richter
  */
-public interface ValueDetectionServiceUpdateListener<T> {
+public interface ValueDetectionServiceListener<T> {
 
     void onUpdate(ValueDetectionServiceUpdateEvent<T> event);
+
+    void onFinished();
 }

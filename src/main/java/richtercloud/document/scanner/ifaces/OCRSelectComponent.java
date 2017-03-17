@@ -33,5 +33,5 @@ public abstract class OCRSelectComponent extends JPanel {
      */
     public abstract File getFile();
 
-    public abstract JButton getAutoOCRValueDetectionButton();
+    public abstract JButton getValueDetectionButton();
 }

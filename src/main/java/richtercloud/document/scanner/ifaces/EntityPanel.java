@@ -17,6 +17,7 @@ package richtercloud.document.scanner.ifaces;
 import java.util.List;
 import javax.swing.JPanel;
 import richtercloud.document.scanner.valuedetectionservice.ValueDetectionResult;
+import richtercloud.document.scanner.valuedetectionservice.ValueDetectionServiceListener;
 
 /**
  * A component holding the {@link ReflectionFormPanel} most likely in a
@@ -32,13 +33,13 @@ public abstract class EntityPanel extends JPanel {
 
     /**
      * Runs the process of value detection (including a call to
-     * {@link #autoOCRValueDetectionGUI() }).
+     * {@link #valueDetectionGUI() }).
      *
      * @param oCRSelectPanelPanelFetcher
      * @param forceRenewal allows to force detection of values no matter which
      * values already have been recognized
      */
-    public abstract void autoOCRValueDetection(OCRSelectPanelPanelFetcher oCRSelectPanelPanelFetcher,
+    public abstract void valueDetection(OCRSelectPanelPanelFetcher oCRSelectPanelPanelFetcher,
             boolean forceRenewal);
 
     /**
@@ -47,11 +48,11 @@ public abstract class EntityPanel extends JPanel {
      * {@link ReflectionFormPanel}s  are added which weren't considered before
      * in which case it's unnecessary to run the complete detection again.
      */
-    public abstract void autoOCRValueDetectionGUI();
+    public abstract void valueDetectionGUI();
 
-    public abstract void addAutoOCRValueDetectionListener(AutoOCRValueDetectionListener listener);
+    public abstract void addValueDetectionListener(ValueDetectionServiceListener<?> listener);
 
-    public abstract void removeAutoOCRValueDetectionListener(AutoOCRValueDetectionListener listener);
+    public abstract void removeValueDetectionListener(ValueDetectionServiceListener<?> listener);
 
     public abstract List<ValueDetectionResult<?>> getDetectionResults();
 

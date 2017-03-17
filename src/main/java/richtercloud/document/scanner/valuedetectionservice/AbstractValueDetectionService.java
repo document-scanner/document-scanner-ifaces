@@ -51,7 +51,7 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
             }
         }
     };
-    private Set<ValueDetectionServiceUpdateListener<T>> listeners = new HashSet<>();
+    private Set<ValueDetectionServiceListener<T>> listeners = new HashSet<>();
     /**
      * Indicates that ongoing actions ought to be canceled (synchronized
      * accross threads with {@code volatile} keyword).
@@ -99,16 +99,16 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
     protected abstract LinkedHashSet<ValueDetectionResult<T>> fetchResults0(String input);
 
     @Override
-    public void addUpdateListener(ValueDetectionServiceUpdateListener listener) {
+    public void addListener(ValueDetectionServiceListener<T> listener) {
         listeners.add(listener);
     }
 
     @Override
-    public void removeUpdateListener(ValueDetectionServiceUpdateListener listener) {
+    public void removeListener(ValueDetectionServiceListener<T> listener) {
         listeners.remove(listener);
     }
 
-    protected Set<ValueDetectionServiceUpdateListener<T>> getListeners() {
+    protected Set<ValueDetectionServiceListener<T>> getListeners() {
         return Collections.unmodifiableSet(listeners);
     }
 }

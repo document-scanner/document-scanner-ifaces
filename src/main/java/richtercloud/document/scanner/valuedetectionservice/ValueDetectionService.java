@@ -37,7 +37,7 @@ public interface ValueDetectionService<T> {
      */
     void cancelFetch();
 
-    void addUpdateListener(ValueDetectionServiceUpdateListener listener);
+    void addListener(ValueDetectionServiceListener<T> listener);
 
-    void removeUpdateListener(ValueDetectionServiceUpdateListener listener);
+    void removeListener(ValueDetectionServiceListener<T> listener);
 }
