@@ -17,7 +17,7 @@ package richtercloud.document.scanner.ifaces;
 import java.util.List;
 import javax.swing.JPanel;
 import richtercloud.document.scanner.valuedetectionservice.ValueDetectionResult;
-import richtercloud.document.scanner.valuedetectionservice.ValueDetectionServiceListener;
+import richtercloud.document.scanner.valuedetectionservice.ValueDetectionService;
 
 /**
  * A component holding the {@link ReflectionFormPanel} most likely in a
@@ -50,10 +50,6 @@ public abstract class EntityPanel extends JPanel {
      */
     public abstract void valueDetectionGUI();
 
-    public abstract void addValueDetectionListener(ValueDetectionServiceListener<?> listener);
-
-    public abstract void removeValueDetectionListener(ValueDetectionServiceListener<?> listener);
-
     public abstract List<ValueDetectionResult<?>> getDetectionResults();
 
     /**
@@ -61,4 +57,12 @@ public abstract class EntityPanel extends JPanel {
      * selected {@link ValueDetectionService}s in configuration.
      */
     public abstract void applyValueDetectionServiceSelection();
+
+    /**
+     * Returns the {@link ValueDetectionService} created at the last call to
+     * {@link #applyValueDetectionServiceSelection() }.
+     *
+     * @return the value detection service
+     */
+    public abstract ValueDetectionService<?> getValueDetectionService();
 }

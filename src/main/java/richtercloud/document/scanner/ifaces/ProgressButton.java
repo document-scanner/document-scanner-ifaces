@@ -14,23 +14,25 @@
  */
 package richtercloud.document.scanner.ifaces;
 
-import java.io.File;
-import javax.swing.JPanel;
+import javax.swing.JButton;
 
 /**
+ * A button which allows to track the process which has been started by pressing
+ * it.
  *
  * @author richter
  */
-public abstract class OCRSelectComponent extends JPanel {
+public abstract class ProgressButton extends JButton {
     private static final long serialVersionUID = 1L;
 
-    public abstract OCRSelectPanelPanel getoCRSelectPanelPanel();
+    public ProgressButton() {
+    }
 
-    /**
-     * A reference to the file which has been opened.
-     * @return the reference or {@code null} if the document is an unsaved scan.
-     */
-    public abstract File getFile();
+    public ProgressButton(String text) {
+        super(text);
+    }
 
-    public abstract ProgressButton getValueDetectionButton();
+    public abstract float getProgress();
+
+    public abstract void setProgress(float progress);
 }
