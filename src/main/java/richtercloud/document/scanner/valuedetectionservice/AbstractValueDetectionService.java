@@ -21,6 +21,8 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -28,6 +30,7 @@ import java.util.Set;
  * @param <T> the type of values to detect
  */
 public abstract class AbstractValueDetectionService<T> implements ValueDetectionService<T> {
+    private final static Logger LOGGER = LoggerFactory.getLogger(AbstractValueDetectionService.class);
     /**
      * The comparator used for sorting the results in the table of the result
      * dialog
@@ -75,6 +78,7 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
      */
     @Override
     public final List<ValueDetectionResult<T>> fetchResults(String input) {
+        long timeStart = System.currentTimeMillis();
         this.canceled = false;
         List<ValueDetectionResult<T>> retValue = new LinkedList<>(fetchResults0(input));
         Collections.sort(retValue, AUTO_OCR_VALUE_DETECTION_RESULT_COMPARATOR);
@@ -85,6 +89,10 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
         getListeners().forEach(listener -> {
             listener.onFinished();
         });
+        long time = System.currentTimeMillis()-timeStart;
+        LOGGER.debug(String.format("%s: fetching results took %d ms",
+                getClass(),
+                time));
         return retValue;
     }
 
