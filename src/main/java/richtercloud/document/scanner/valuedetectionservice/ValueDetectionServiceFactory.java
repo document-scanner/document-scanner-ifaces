@@ -18,7 +18,7 @@ package richtercloud.document.scanner.valuedetectionservice;
  *
  * @author richter
  */
-public interface ValueDetectionServiceConfFactory<S extends ValueDetectionService, C extends ValueDetectionServiceConf> {
+public interface ValueDetectionServiceFactory<S extends ValueDetectionService, C extends ValueDetectionServiceConf> {
 
     S createService(C serviceConf);
 }

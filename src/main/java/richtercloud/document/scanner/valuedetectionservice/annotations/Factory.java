@@ -18,7 +18,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import richtercloud.document.scanner.valuedetectionservice.ValueDetectionServiceConfFactory;
+import richtercloud.document.scanner.valuedetectionservice.ValueDetectionServiceFactory;
 
 /**
  *
@@ -26,7 +26,7 @@ import richtercloud.document.scanner.valuedetectionservice.ValueDetectionService
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ConfFactory {
+public @interface Factory {
 
-    Class<? extends ValueDetectionServiceConfFactory> confFactoryClass();
+    Class<? extends ValueDetectionServiceFactory> confFactoryClass();
 }
