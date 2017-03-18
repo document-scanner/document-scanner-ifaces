@@ -25,6 +25,7 @@ import java.util.Map;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 import org.apache.commons.lang3.tuple.Pair;
+import richtercloud.document.scanner.valuedetectionservice.ValueDetectionServiceCreationException;
 import richtercloud.reflection.form.builder.jpa.storage.PersistenceStorage;
 
 /**
@@ -76,5 +77,5 @@ public abstract class MainPanel extends JPanel {
      * after a change of available and selected {@link ValueDetectionService}s
      * in configuration.
      */
-    public abstract void applyValueDetectionServiceSelection();
+    public abstract void applyValueDetectionServiceSelection() throws ValueDetectionServiceCreationException;
 }

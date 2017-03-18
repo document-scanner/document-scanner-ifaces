@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import richtercloud.document.scanner.valuedetectionservice.ValueDetectionResult;
 import richtercloud.document.scanner.valuedetectionservice.ValueDetectionService;
+import richtercloud.document.scanner.valuedetectionservice.ValueDetectionServiceCreationException;
 
 /**
  * A component holding the {@link ReflectionFormPanel} most likely in a
@@ -56,7 +57,7 @@ public abstract class EntityPanel extends JPanel {
      * Create new {@link ValueDetectionService}s after a change of available and
      * selected {@link ValueDetectionService}s in configuration.
      */
-    public abstract void applyValueDetectionServiceSelection();
+    public abstract void applyValueDetectionServiceSelection() throws ValueDetectionServiceCreationException;
 
     /**
      * Returns the {@link ValueDetectionService} created at the last call to

@@ -18,7 +18,22 @@ package richtercloud.document.scanner.valuedetectionservice;
  *
  * @author richter
  */
-public interface ValueDetectionServiceFactory<S extends ValueDetectionService, C extends ValueDetectionServiceConf> {
+public class ValueDetectionServiceCreationException extends Exception {
+    private static final long serialVersionUID = 1L;
 
-    S createService(C serviceConf) throws ValueDetectionServiceCreationException;
+    public ValueDetectionServiceCreationException(String message) {
+        super(message);
+    }
+
+    public ValueDetectionServiceCreationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ValueDetectionServiceCreationException(Throwable cause) {
+        super(cause);
+    }
+
+    public ValueDetectionServiceCreationException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 }
