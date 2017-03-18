@@ -82,6 +82,9 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
             //providing a Comparator is necessary in order to avoid making
             //entities Comparables which is rather bad style and might have
             //unwanted results
+        getListeners().forEach(listener -> {
+            listener.onFinished();
+        });
         return retValue;
     }
 
