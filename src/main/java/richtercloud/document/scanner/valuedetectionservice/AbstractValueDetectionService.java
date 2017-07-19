@@ -43,7 +43,7 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
         @Override
         public int compare(ValueDetectionResult<?> o1, ValueDetectionResult<?> o2) {
             //Provide stable sorting first on type, then on value
-            if(!o1.getValue().getClass().equals(o2.getValue())) {
+            if(!o1.getValue().getClass().equals(o2.getValue().getClass())) {
                 return o1.getValue().getClass().getSimpleName().compareTo(o2.getValue().getClass().getSimpleName());
             }
             if(o1.getValue() instanceof Comparable) {
