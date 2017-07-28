@@ -14,6 +14,7 @@
  */
 package richtercloud.document.scanner.ifaces;
 
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -25,4 +26,6 @@ public abstract class OCRPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     public abstract JTextArea getoCRResultTextArea();
+
+    public abstract JCheckBox getTrimWhitespaceCheckBox();
 }
