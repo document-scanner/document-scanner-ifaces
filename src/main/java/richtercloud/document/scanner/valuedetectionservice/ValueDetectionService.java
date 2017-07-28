@@ -15,6 +15,7 @@
 package richtercloud.document.scanner.valuedetectionservice;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Abstraction for different implementations for auto-OCR-value-detection.
@@ -23,14 +24,25 @@ import java.util.List;
  * @param <T> the type of values to detect
  */
 public interface ValueDetectionService<T> {
+    public final static String LANGUAGE_CHINESE = Locale.CHINESE.getLanguage();
+    public final static String LANGUAGE_ENGLISH = Locale.ENGLISH.getLanguage();
+    public final static String LANGUAGE_FRENCH = Locale.FRENCH.getLanguage();
+    public final static String LANGUAGE_GERMAN = Locale.GERMAN.getLanguage();
+    public final static String LANGUAGE_SPANISH = Locale.forLanguageTag("es").getLanguage();
+
+    public static String retrieveLanguageIdentifier(Locale locale) {
+        return locale.getLanguage();
+    }
 
     /**
      * Fetches results in the form of {@link ValueDetectionResult}s from
      * {@code input}.
      * @param input
+     * @param languageIdentifier the language to fetch results for
      * @return the fetched results
      */
-    List<ValueDetectionResult<T>> fetchResults(String input);
+    List<ValueDetectionResult<T>> fetchResults(String input,
+            String languageIdentifier);
 
     /**
      * Cancels a previously started {@link #fetchResults(java.lang.String) }.
@@ -40,4 +52,6 @@ public interface ValueDetectionService<T> {
     void addListener(ValueDetectionServiceListener<T> listener);
 
     void removeListener(ValueDetectionServiceListener<T> listener);
+
+    boolean supportsLanguage(String languageIdentifier);
 }

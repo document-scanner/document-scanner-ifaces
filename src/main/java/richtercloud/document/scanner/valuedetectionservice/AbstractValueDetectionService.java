@@ -77,10 +77,12 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
      * @return list of results
      */
     @Override
-    public final List<ValueDetectionResult<T>> fetchResults(String input) {
+    public final List<ValueDetectionResult<T>> fetchResults(String input,
+            String languageIdentifier) {
         long timeStart = System.currentTimeMillis();
         this.canceled = false;
-        List<ValueDetectionResult<T>> retValue = new LinkedList<>(fetchResults0(input));
+        List<ValueDetectionResult<T>> retValue = new LinkedList<>(fetchResults0(input,
+                languageIdentifier));
         Collections.sort(retValue, AUTO_OCR_VALUE_DETECTION_RESULT_COMPARATOR);
             //sort internally in order to improve sorting performance of table
             //providing a Comparator is necessary in order to avoid making
@@ -107,7 +109,8 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
     order in order to avoid each implementation to use it internally only (which
     would require code to be managed at multiple locations)
     */
-    protected abstract LinkedHashSet<ValueDetectionResult<T>> fetchResults0(String input);
+    protected abstract LinkedHashSet<ValueDetectionResult<T>> fetchResults0(String input,
+            String languageIdentifier);
 
     @Override
     public void addListener(ValueDetectionServiceListener<T> listener) {
