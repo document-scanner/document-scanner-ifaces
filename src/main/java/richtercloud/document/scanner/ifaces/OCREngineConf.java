@@ -15,6 +15,7 @@
 package richtercloud.document.scanner.ifaces;
 
 import java.io.Serializable;
+import richtercloud.message.handler.IssueHandler;
 
 /**
  * Holds configuration values for an {@link OCREngine} usually created in an
@@ -23,5 +24,13 @@ import java.io.Serializable;
  */
 public interface OCREngineConf extends Serializable {
 
-    void validate() throws OCREngineConfValidationException;
+    /**
+     * Validates itself.
+     *
+     * @param issueHandler the issue handler to communicate any unexpected
+     * issues which occured during validation
+     * @throws OCREngineConfValidationException if this configuration isn't
+     * valid
+     */
+    void validate(IssueHandler issueHandler) throws OCREngineConfValidationException;
 }
