@@ -14,6 +14,7 @@
  */
 package richtercloud.document.scanner.valuedetectionservice;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Locale;
 
@@ -41,8 +42,14 @@ public interface ValueDetectionService<T> {
      * @param languageIdentifier the language to fetch results for
      * @return the fetched results
      */
+    /*
+    internal implementation notes:
+    - A list can contain the order in of the result in the input which increases
+    intuition when they're selected by the user. Duplicate avoidance has to be
+    handled by implementations.
+    */
     List<ValueDetectionResult<T>> fetchResults(String input,
-            String languageIdentifier);
+            String languageIdentifier) throws ResultFetchingException;
 
     /**
      * Cancels a previously started {@link #fetchResults(java.lang.String) }.
@@ -54,4 +61,21 @@ public interface ValueDetectionService<T> {
     void removeListener(ValueDetectionServiceListener<T> listener);
 
     boolean supportsLanguage(String languageIdentifier);
+
+    /**
+     * Allows to restrict the fields on which the detection results ought to be
+     * set. Some types of values like dates are interesting for all date fields
+     * of the set of entity classes whereas some values like the identifier of a
+     * document based on guesses of identifiers of previous documents is most
+     * likely only interesting for the identifier field of the document class.
+     *
+     * This implies that type-based implementations like a date value detection
+     * service could return something like
+     * {@code Date.class.isAssignableFrom(field.getType) }.
+     *
+     * @param field
+     * @return {@code true} if {@code field} is supported, {@code false}
+     * otherwise
+     */
+    boolean supportsField(Field field);
 }

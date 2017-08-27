@@ -78,7 +78,7 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
      */
     @Override
     public final List<ValueDetectionResult<T>> fetchResults(String input,
-            String languageIdentifier) {
+            String languageIdentifier) throws ResultFetchingException {
         long timeStart = System.currentTimeMillis();
         this.canceled = false;
         List<ValueDetectionResult<T>> retValue = new LinkedList<>(fetchResults0(input,
@@ -110,7 +110,7 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
     would require code to be managed at multiple locations)
     */
     protected abstract LinkedHashSet<ValueDetectionResult<T>> fetchResults0(String input,
-            String languageIdentifier);
+            String languageIdentifier) throws ResultFetchingException;
 
     @Override
     public void addListener(ValueDetectionServiceListener<T> listener) {

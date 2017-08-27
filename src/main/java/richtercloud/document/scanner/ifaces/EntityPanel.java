@@ -15,10 +15,12 @@
 package richtercloud.document.scanner.ifaces;
 
 import java.util.List;
+import java.util.Map;
 import javax.swing.JPanel;
 import richtercloud.document.scanner.valuedetectionservice.ValueDetectionResult;
 import richtercloud.document.scanner.valuedetectionservice.ValueDetectionService;
 import richtercloud.document.scanner.valuedetectionservice.ValueDetectionServiceCreationException;
+import richtercloud.document.scanner.valuedetectionservice.ValueDetectionServiceExecutor;
 
 /**
  * A component holding the {@link ReflectionFormPanel} most likely in a
@@ -51,7 +53,7 @@ public abstract class EntityPanel extends JPanel {
      */
     public abstract void valueDetectionGUI();
 
-    public abstract List<ValueDetectionResult<?>> getDetectionResults();
+    public abstract Map<ValueDetectionService, List<ValueDetectionResult>> getDetectionResults();
 
     /**
      * Create new {@link ValueDetectionService}s after a change of available and
@@ -65,5 +67,5 @@ public abstract class EntityPanel extends JPanel {
      *
      * @return the value detection service
      */
-    public abstract ValueDetectionService<?> getValueDetectionService();
+    public abstract ValueDetectionServiceExecutor<?> getValueDetectionServiceExecutor();
 }
