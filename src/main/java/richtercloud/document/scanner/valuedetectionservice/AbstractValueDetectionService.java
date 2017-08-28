@@ -83,6 +83,33 @@ public abstract class AbstractValueDetectionService<T> implements ValueDetection
         this.canceled = false;
         List<ValueDetectionResult<T>> retValue = new LinkedList<>(fetchResults0(input,
                 languageIdentifier));
+        //check for duplicates (ValueDetectionResults with the same value and
+        //common prefix in the oCRSource property) -> keep the one with the
+        //shorter oCRSource because it's easier to check and the tail or prefix
+        //won't contain additional information
+        Set<ValueDetectionResult<T>> duplicates = new HashSet<>();
+            //collect duplicates instead of figuring out how to delete in a
+            //nested ListIterator construct
+        for(ValueDetectionResult<T> result : retValue) {
+            for(ValueDetectionResult<T> result0 : retValue) {
+                if(result.equals(result0)) {
+                    continue;
+                }
+                if(!result.getValue().equals(result0.getValue())) {
+                    continue;
+                }
+                if(result.getoCRSource().startsWith(result0.getoCRSource())
+                        || result0.getoCRSource().startsWith(result.getoCRSource())) {
+                    duplicates.add(result.getoCRSource().length() < result0.getoCRSource().length()
+                            ? result0
+                            : result);
+                        //add the result with longer oCRSource to duplicates
+                        //(see above)
+                }
+            }
+        }
+        retValue.removeAll(duplicates);
+        //sort
         Collections.sort(retValue, AUTO_OCR_VALUE_DETECTION_RESULT_COMPARATOR);
             //sort internally in order to improve sorting performance of table
             //providing a Comparator is necessary in order to avoid making
