@@ -61,10 +61,11 @@ public abstract class MainPanel extends JPanel {
     public abstract void setoCREngine(OCREngine oCREngine);
 
     public abstract void exportActiveDocument(OutputStream outputStream,
-            int exportFormat) throws IOException;
+            int exportFormat) throws IOException,
+            ImageWrapperException;
 
     public void exportActiveDocument(File outputFile,
-            int exportFormat) throws FileNotFoundException, IOException {
+            int exportFormat) throws FileNotFoundException, IOException, ImageWrapperException {
         try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile))) {
             exportActiveDocument(outputStream,
                     exportFormat);

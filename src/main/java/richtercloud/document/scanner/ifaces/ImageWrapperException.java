@@ -14,23 +14,24 @@
  */
 package richtercloud.document.scanner.ifaces;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.List;
-import javax.swing.JPanel;
-
 /**
+ * A wrapper for any exception which can occur inside {@link ImageWrapper}
+ * methods.
  *
  * @author richter
  */
-public abstract class OCRSelectPanelPanel extends JPanel {
+public class ImageWrapperException extends Exception {
     private static final long serialVersionUID = 1L;
 
-    public abstract File getDocumentFile();
+    public ImageWrapperException(String message) {
+        super(message);
+    }
 
-    public abstract List<OCRSelectPanel> getoCRSelectPanels();
+    public ImageWrapperException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-    public abstract void setZoomLevels(float zoomLevel) throws ImageWrapperException;
-
-    public abstract BufferedImage getSelection() throws ImageWrapperException;
+    public ImageWrapperException(Throwable cause) {
+        super(cause);
+    }
 }

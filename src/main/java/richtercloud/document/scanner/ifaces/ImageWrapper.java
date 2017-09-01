@@ -16,7 +16,6 @@ package richtercloud.document.scanner.ifaces;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import javafx.scene.image.WritableImage;
@@ -56,7 +55,7 @@ public interface ImageWrapper extends Serializable {
     streams, a key technique to speed up I/O in Java
     <ref>http://www.oracle.com/technetwork/articles/javase/perftuning-137844.html</ref>
     */
-    InputStream getOriginalImageStream(String formatName) throws IOException;
+    InputStream getOriginalImageStream(String formatName) throws ImageWrapperException;
 
     /**
      * Binary data of the original image in form of an {@link InputStream} in
@@ -65,13 +64,13 @@ public interface ImageWrapper extends Serializable {
      * @throws IOException if an exception occurs while reading from image
      * storage file
      */
-    InputStream getOriginalImageStream() throws IOException;
+    InputStream getOriginalImageStream() throws ImageWrapperException;
 
-    BufferedImage getOriginalImage() throws IOException;
+    BufferedImage getOriginalImage() throws ImageWrapperException;
 
-    BufferedImage getImagePreview(int width) throws IOException;
+    BufferedImage getImagePreview(int width) throws ImageWrapperException;
 
-    WritableImage getImagePreviewFX(int width) throws IOException;
+    WritableImage getImagePreviewFX(int width) throws ImageWrapperException;
 
     int getImageHeightScaled(int width);
 
@@ -81,7 +80,7 @@ public interface ImageWrapper extends Serializable {
 
     double getRotationDegrees();
 
-    void setRotationDegrees(double rotationDegrees);
+    void setRotationDegrees(double rotationDegrees) throws ImageWrapperException;
 
     File getStorageFile();
 

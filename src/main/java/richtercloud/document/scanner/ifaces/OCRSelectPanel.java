@@ -15,7 +15,6 @@
 package richtercloud.document.scanner.ifaces;
 
 import java.awt.Point;
-import java.io.IOException;
 import javax.swing.JPanel;
 
 /**
@@ -41,7 +40,7 @@ public abstract class OCRSelectPanel extends JPanel {
 
     public abstract int dragSeletionHeight();
 
-    public abstract void setZoomLevel(float zoomLevel) throws IOException;
+    public abstract void setZoomLevel(float zoomLevel) throws ImageWrapperException;
 
     public abstract void unselect();
 }
