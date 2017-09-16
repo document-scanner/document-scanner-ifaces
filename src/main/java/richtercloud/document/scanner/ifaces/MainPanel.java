@@ -20,7 +20,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
@@ -47,27 +47,37 @@ public abstract class MainPanel extends JPanel {
         return (GroupLayout) super.getLayout();
     }
 
-    public abstract void addDocument(Object entityToEdit) throws DocumentAddException, IOException;
+    public abstract void addDocumentItem(DocumentItem documentItem) throws DocumentAddException, IOException;
 
-    public abstract void addDocument(List<ImageWrapper> images,
-            File selectedFile) throws DocumentAddException, IOException;
+    /**
+     * The mapping between document items and the {@link OCRSelectComponent}
+     * which is used as key in the document switching map.
+     *
+     * @return the mapping
+     */
+    /*
+    internal implementation notes:
+    - Is a LinkedHashMap in order to deal with preservation of the iteration
+    order as easily as possible
+    */
+    public abstract LinkedHashMap<DocumentItem, OCRSelectComponent> getDocumentItems();
 
-    public abstract void removeActiveDocument();
+    public abstract void removeActiveDocumentItem();
 
-    public abstract int getDocumentCount();
+    public abstract int getDocumentItemCount();
 
     public abstract void setStorage(PersistenceStorage storage);
 
     public abstract void setoCREngine(OCREngine oCREngine);
 
-    public abstract void exportActiveDocument(OutputStream outputStream,
+    public abstract void exportActiveDocumentItem(OutputStream outputStream,
             int exportFormat) throws IOException,
             ImageWrapperException;
 
-    public void exportActiveDocument(File outputFile,
+    public void exportActiveDocumentItem(File outputFile,
             int exportFormat) throws FileNotFoundException, IOException, ImageWrapperException {
         try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile))) {
-            exportActiveDocument(outputStream,
+            exportActiveDocumentItem(outputStream,
                     exportFormat);
             outputStream.flush();
         }
