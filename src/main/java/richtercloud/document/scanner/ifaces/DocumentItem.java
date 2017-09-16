@@ -15,6 +15,7 @@
 package richtercloud.document.scanner.ifaces;
 
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -30,15 +31,25 @@ public class DocumentItem {
             List<ImageWrapper> images,
             File selectedFile) {
         this.entityToEdit = entityToEdit;
+        if(images == null) {
+            throw new IllegalArgumentException("images mustn't be null");
+        }
         this.images = images;
         this.selectedFile = selectedFile;
     }
 
     public DocumentItem(List<ImageWrapper> images) {
-        this.images = images;
+        this(null, //entityToEdit
+                images,
+                null //selectedFile
+        );
     }
 
     public DocumentItem() {
+        this(null, //entityToEdit
+                new LinkedList<>(), //images
+                null //selectedFile
+        );
     }
 
     public Object getEntityToEdit() {
