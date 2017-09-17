@@ -24,6 +24,15 @@ import java.util.List;
  */
 public class DocumentItem {
     private Object entityToEdit;
+    /**
+     * The images of the document item.
+     */
+    /*
+    internal implementation notes:
+    - enforcing initialization with an empty list, e.g. if entityToEdit is
+    specified in constructor doesn't work because images are most likely not yet
+    retrieved
+    */
     private List<ImageWrapper> images;
     private File selectedFile;
 
@@ -31,11 +40,15 @@ public class DocumentItem {
             List<ImageWrapper> images,
             File selectedFile) {
         this.entityToEdit = entityToEdit;
-        if(images == null) {
-            throw new IllegalArgumentException("images mustn't be null");
-        }
         this.images = images;
         this.selectedFile = selectedFile;
+    }
+
+    public DocumentItem(Object entityToEdit) {
+        this(entityToEdit,
+                null, //images
+                null //selectedFile
+        );
     }
 
     public DocumentItem(List<ImageWrapper> images) {
