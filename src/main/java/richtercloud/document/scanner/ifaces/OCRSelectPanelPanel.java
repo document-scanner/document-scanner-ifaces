@@ -30,6 +30,8 @@ public abstract class OCRSelectPanelPanel extends JPanel {
 
     public abstract List<OCRSelectPanel> getoCRSelectPanels();
 
+    public abstract void updateoCRSelectPanels(List<OCRSelectPanel> oCRSelectPanels);
+
     public abstract void setZoomLevels(float zoomLevel) throws ImageWrapperException;
 
     public abstract BufferedImage getSelection() throws ImageWrapperException;
